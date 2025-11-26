@@ -7,12 +7,6 @@ public final class Fecha implements Cloneable, Proceso {
 	private int mes;
 	private int anio;
 
-	/**
-	 * CONSTRUCTORES
-	 * @param dia
-	 * @param mes
-	 * @param anio
-	 */
 	public Fecha(int dia, int mes, int anio) {
 		setFecha(dia, mes, anio);
 	}
@@ -23,10 +17,6 @@ public final class Fecha implements Cloneable, Proceso {
 		anio = f.anio;
 	}
 
-	/**
-	 * GETTERS
-	 * @return
-	 */
 	public int getDia() {
 		return dia;
 	}
@@ -38,13 +28,7 @@ public final class Fecha implements Cloneable, Proceso {
 	public int getAnio() {
 		return anio;
 	}
-	
-	/**
-	 * SETTERS
-	 * @param d
-	 * @param m
-	 * @param a
-	 */
+
 	public void setFecha(int d, int m, int a) {
 		int dmax, diaMes[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 		anio = a; // VIP debo asignar año para al llamar a bisiesto() tengo el año bien
@@ -156,7 +140,38 @@ public final class Fecha implements Cloneable, Proceso {
 		return (dia == c.dia && mes == c.mes && anio == c.anio);
 	}
 
-	/*public static void main(String[] args) {
+	public Fecha diaSig() {
+
+		int dia = this.getDia(), mes = this.getMes(), anio = this.getAnio(); 
+		int diaMes[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+		
+		if (mes < 1) 
+			 mes = 1;
+		else if (mes > 12) 
+			mes = 12;
+		
+		int dmax = diaMes[mes - 1];
+		
+		if (mes == 2 && bisiesto())
+			dmax++;
+		
+		dia++;
+		
+		if (dia > dmax) {
+			dia = 1;
+			mes++;
+			
+			if (mes > 12) {
+				mes = 1;
+				anio++;
+			}
+		}
+		
+		return new Fecha(dia, mes, anio);
+		
+	}
+
+	public static void main(String[] args) {
 		Fecha f1 = new Fecha(29, 2, 2001), f2 = new Fecha(f1), f3 = new Fecha(29, 2, 2004);
 		final Fecha f4 = new Fecha(05, 12, 2003); // es constante la referencia f4
 		System.out.println("Fechas: " + f1.toString() + ", " + f2 + ", " + f3 + ", " + f4);
@@ -168,5 +183,5 @@ public final class Fecha implements Cloneable, Proceso {
 		if (f3.bisiesto() && Fecha.mayor(f2, f1))
 			System.out.println("El " + f3.getAnio() + " fue bisiesto, " + f1 + ", " + f3);
 		System.out.print("Fin\n");
-	}*/
+	}
 }

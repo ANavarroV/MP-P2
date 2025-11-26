@@ -6,18 +6,39 @@ public class Cliente {
 	private final int codCliente; //codigo único (y fijo) generado por la aplicación
 	private String nombre; //nombre completo del cliente (SI se puede modificar)
 	private final Fecha fechaNac; //fecha nacimiento del cliente (NO se puede cambiar)
-	private final Fecha fechaAlta; //fecha de alta del cliente (SI se puede modificar)
+	private Fecha fechaAlta; //fecha de alta del cliente (SI se puede modificar)
 	
-	public Cliente (String nif, String nom, Fecha fNac, Fecha fAlta) {
+	private static int contador = 1;
+	private static Fecha fechaPorDefecto = new Fecha(01, 01, 2018);
+	
+	
+	public Cliente (String NIF, String nom, Fecha fNac, Fecha fAlta) {
 		
-		this.nif = nif;
+		nif = NIF;
 		nombre = nom;
 		fechaNac = fNac;
 		fechaAlta = fAlta;
+		
+		codCliente = contador++;
+	} 
 	
-	} //constructor
+	public Cliente (String NIF, String nom, Fecha fNac) {
+		nif = NIF;
+		nombre = nom;
+		fechaNac = fNac;
+		fechaAlta = fechaPorDefecto;
+		codCliente = contador++;
+	}
 	
-	public Cliente (String NIF, String nom, Fecha fNac); //constructor
-	public String toString(); //devuelve una cadena con la información del cliente
+	public static Fecha getFechaPorDefecto() {
+		
+		return fechaPorDefecto;
+	}
+	
+	public String toString() {
+		String s = nif + " " + fechaNac + ": " + nombre + " (" + codCliente + " - " + fechaAlta + ")";
+		return s;
+	}
 	
 }
+
