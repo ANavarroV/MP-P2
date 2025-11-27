@@ -30,10 +30,11 @@ public class Prueba1 {
 		
 		if (c2.equals(c1) && c3.equals(c4))
 			Cliente.setFechaPorDefecto(f3.diaSig());
+
 		
 		System.out.print("Fecha alta por defecto: " + Cliente.getFechaPorDefecto() + "\n");
 		Cliente [] c = new Cliente[6]; //array de 6 elementos de tipo Cliente
-		c[0]= new ClienteMovil("547B","Bo Derek", fnac1, f3, f3, 50.50f, 0.03f);
+		/*c[0]= new ClienteMovil("547B","Bo Derek", fnac1, f3, f3, 50.50f, 0.03f);
 		c[1]= new ClienteMovil("107J","Messi", fnac2, 35.00f, 0.02f);
 		ClienteMovil cm= (ClienteMovil) c[1].clone();
 		c[2]=cm; cm.setNombre(c1.getNombre()); cm.setFechaAlta(f1); cm.setFPermanencia(f1);
