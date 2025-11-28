@@ -1,5 +1,66 @@
 package libClases;
 
-public class ClienteTarifaPlana {
-
+public class ClienteTarifaPlana extends Cliente {
+	
+	private String nacionalidad;
+	private float minHablados;
+	private static float precioTP = 20;
+	private static float minutosTP = 300;
+	
+	public ClienteTarifaPlana (String NIF, String nom, Fecha fNac, Fecha fAlta, float mH, String nac) {
+		super(NIF, nom, fNac, fAlta);
+		
+		minHablados = mH;
+		nacionalidad = nac;
+	}
+	
+	public ClienteTarifaPlana (String NIF, String nom, Fecha fNac, float mH, String nac) {
+		super(NIF, nom, fNac);
+		
+		minHablados = mH;
+		nacionalidad = nac;
+	}
+	
+	public ClienteTarifaPlana (ClienteTarifaPlana cTP) {
+		super(cTP);
+		
+		nacionalidad = cTP.nacionalidad;
+		minHablados = cTP.minHablados;
+		
+	}
+	
+	@Override
+	public ClienteTarifaPlana clone() {
+		// TODO Auto-generated method stub
+		return new ClienteTarifaPlana(this);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+	
+	public static float getLimite() {
+		return minutosTP;
+	}
+	
+	public static float getTarifa() {
+		return precioTP;
+	}
+	
+	public void setNacionalidad(String nac) {
+		nacionalidad = nac;
+	}
+	
+	public void setMinutos(float min) {
+		minHablados = min;
+	}
+	
+	public static void setTarifa(float minTP, float preTP) {
+		minutosTP = minTP;
+		precioTP = preTP;
+	}
+	
+	
 }

@@ -34,7 +34,7 @@ public class Prueba1 {
 		
 		System.out.print("Fecha alta por defecto: " + Cliente.getFechaPorDefecto() + "\n");
 		Cliente [] c = new Cliente[6]; //array de 6 elementos de tipo Cliente
-		/*c[0]= new ClienteMovil("547B","Bo Derek", fnac1, f3, f3, 50.50f, 0.03f);
+		c[0]= new ClienteMovil("547B","Bo Derek", fnac1, f3, f3, 50.50f, 0.03f);
 		c[1]= new ClienteMovil("107J","Messi", fnac2, 35.00f, 0.02f);
 		ClienteMovil cm= (ClienteMovil) c[1].clone();
 		c[2]=cm; cm.setNombre(c1.getNombre()); cm.setFechaAlta(f1); cm.setFPermanencia(f1);
@@ -46,9 +46,10 @@ public class Prueba1 {
 		cm.ver(); ct.ver();
 		
 		ClienteTarifaPlana.setTarifa(350, 22.50f); //cambia la Tarifa Plana a 350 min x 22.50
-		System.out.print("Tarifa Plana: " + ClienteTarifaPlana.getLimite() + " minutos por " + ClienteTarifaPlana.getTarifa() + " euros\n)";
+		System.out.print("Tarifa Plana: " + ClienteTarifaPlana.getLimite() + " minutos por " + 
+				ClienteTarifaPlana.getTarifa() + "€\n)");
 		
-		for(int i=0; i<6; i++)
+		/*for(int i=0; i<6; i++)
 			System.out.println(c[i].getNif() + ", " + c[i].getFechaAlta() + ", " + c[i]);
 		
 		if (c[2].equals(c[1]))
