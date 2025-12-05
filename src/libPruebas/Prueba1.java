@@ -49,7 +49,7 @@ public class Prueba1 {
 		System.out.print("Tarifa Plana: " + ClienteTarifaPlana.getLimite() + " minutos por " + 
 				ClienteTarifaPlana.getTarifa() + "€\n)");
 		
-		/*for(int i=0; i<6; i++)
+		for(int i=0; i<6; i++)
 			System.out.println(c[i].getNif() + ", " + c[i].getFechaAlta() + ", " + c[i]);
 		
 		if (c[2].equals(c[1]))
@@ -58,6 +58,6 @@ public class Prueba1 {
 		if (c[4].equals(c3)==false) {
 			System.out.println("c[4] y c3 no son iguales (mismo dni pero distinto tipo)");
 			
-		}*/
+		}
 	}
 }

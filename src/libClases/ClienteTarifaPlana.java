@@ -62,5 +62,29 @@ public class ClienteTarifaPlana extends Cliente {
 		precioTP = preTP;
 	}
 	
+	public float factura() {
+		
+		float f = precioTP;
+		float excesoMin = minHablados - minutosTP;
+		
+		if(excesoMin > 0) {
+			
+			f = (float) (precioTP + (excesoMin * 0.15f));
+		}
+		
+		return f;
+	}
+	
+	@Override
+	public String toString() {
+		String s = super.toString();
+		s += nacionalidad + " [" + minutosTP + " por " + precioTP + "] " + minHablados + " --> " + factura();
+		return s;
+	}
+	
+	public void ver() {
+		System.out.println(this.toString());
+	}
+	
 	
 }

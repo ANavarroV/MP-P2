@@ -75,14 +75,14 @@ public class ClienteMovil extends Cliente{
 	
 	@Override
 	public String toString() {
+		
 		String s = super.toString();
-		s += fechaPermanencia + " " + minHablados + " x " + precioMin + " = " + minHablados*precioMin;
+		s += fechaPermanencia + " " + minHablados + " x " + precioMin + " --> " + minHablados*precioMin;
 		return s;
 	}
 	
 	public void ver() {
-		System.out.println(super.toString());
-		System.out.println(fechaPermanencia + " " + minHablados + " x " + precioMin + " = " + minHablados*precioMin);
 		
+		System.out.println(this.toString());
 	}
 }
