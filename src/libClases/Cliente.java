@@ -84,6 +84,10 @@ public class Cliente implements Cloneable{
 		return nombre;
 	}
 	
+	public int getCodCliente() {
+		return codCliente;
+	}
+	
 	public void setNombre(String nom) {
 		
 		nombre = nom;
@@ -118,12 +122,12 @@ public class Cliente implements Cloneable{
 	}
 	
 	public String toString() {
-		String s = nif + " " + fechaNac + ": " + nombre + " (" + codCliente + " - " + fechaAlta + ")";
+		String s = nif + " " + fechaNac + ": " + nombre + " (" + codCliente + " - " + fechaAlta + ") ";
 		return s;
 	}
 	
 	public void ver() {
-		System.out.println(nif + " " + fechaNac + ": " + nombre + " (" + codCliente + " - " + fechaAlta + ")");
+		System.out.println(this.toString());
 	}
 	
 }
