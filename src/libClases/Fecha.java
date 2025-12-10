@@ -97,7 +97,7 @@ public final class Fecha implements Cloneable, Proceso {
 				System.out.println("Fecha no valida");
 			}
 		} while (!valida);
-		sc.close();
+		//sc.close();
 		return fecha;
 	}
 

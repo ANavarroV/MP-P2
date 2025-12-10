@@ -46,7 +46,7 @@ public class Empresa implements Cloneable {
 		clientes = nuevo;
 	}
 
-	private Fecha pedirFecha(Scanner sc) {
+	/*private Fecha pedirFecha(Scanner sc) {
 		Fecha fecha = null;
 		boolean valida = false;
 		int dia, mes, anio;
@@ -79,7 +79,7 @@ public class Empresa implements Cloneable {
 		} while (!valida);
 
 		return fecha;
-	}
+	}*/
 
 	public int nClienteMovil() {
 
@@ -117,10 +117,10 @@ public class Empresa implements Cloneable {
 			String nNombre = sc.nextLine();
 
 			System.out.println("Fecha Nacimiento: ");
-			Fecha nFN = pedirFecha(sc);
+			Fecha nFN = Fecha.pedirFecha();
 
 			System.out.println("Fecha Alta: ");
-			Fecha nFA = pedirFecha(sc);
+			Fecha nFA = Fecha.pedirFecha();
 
 			System.out.print("Minutos que habla al mes: ");
 			float nMinutos = sc.nextFloat();
@@ -141,7 +141,7 @@ public class Empresa implements Cloneable {
 				System.out.print("Precio por minuto: ");
 				float precioMin = sc.nextFloat();
 				System.out.println("Fecha fin permanencia: ");
-				Fecha finPermanencia = pedirFecha(sc);
+				Fecha finPermanencia = Fecha.pedirFecha();
 
 				ClienteMovil cM = new ClienteMovil(nDNI, nNombre, nFN, nFA, finPermanencia, nMinutos, precioMin);
 

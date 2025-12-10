@@ -24,9 +24,9 @@ public class Prueba2 {
 		g.alta(cm2);
 		g.alta(ct[1]);
 		g.alta(cm3);
-		//g.alta();
-		//g.alta(); // añade un ClienteMovil 100Z Pepe Luis, 2/2/1972 1/1/2001,
-//40.30, 0.04 1/1/2010 y otro con nif 106T
+		g.alta();
+		g.alta(); // añade un ClienteMovil 100Z Pepe Luis, 2/2/1972 1/1/2001,
+		//40.30, 0.04 1/1/2010 y otro con nif 106T
 		g.alta(ct[1]); // no lo debe de añadir ya que existe
 		System.out.println("Grupo g:\n" + g);
 		g.baja("547B"); // elimina el cliente con nif 547B
