@@ -1,6 +1,6 @@
 package libClases;
 
-public class ClienteTarifaPlana extends Cliente {
+public class ClienteTarifaPlana extends Cliente implements Cloneable, Proceso{
 	
 	private String nacionalidad;
 	private float minHablados;

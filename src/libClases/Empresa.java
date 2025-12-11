@@ -8,17 +8,24 @@ public class Empresa implements Cloneable {
 	private Cliente[] clientes;
 
 	public Empresa() {
+
 		clientes = new Cliente[10];
 		nClientes = 0;
 	}
 
 	public Empresa(Empresa e) {
 
+		nClientes = e.nClientes;
+		clientes = new Cliente[this.nClientes];
+
+		for (int i = 0; i < this.nClientes; i++) {
+			clientes[i] = (Cliente) e.clientes[i].clone();
+		}
 	}
 
 	@Override
 	public Empresa clone() {
-		// TODO Auto-generated method stub
+		
 		return new Empresa(this);
 	}
 
@@ -45,41 +52,6 @@ public class Empresa implements Cloneable {
 
 		clientes = nuevo;
 	}
-
-	/*private Fecha pedirFecha(Scanner sc) {
-		Fecha fecha = null;
-		boolean valida = false;
-		int dia, mes, anio;
-
-		do {
-			System.out.print("Introduce la Fecha (dd/mm/aaaa): ");
-			String cadena = sc.next(); // o nextLine(), según cómo leas el resto
-			String[] tokens = cadena.split("/");
-
-			try {
-				if (tokens.length != 3) {
-					throw new NumberFormatException();
-				}
-
-				dia = Integer.parseInt(tokens[0]);
-				mes = Integer.parseInt(tokens[1]);
-				anio = Integer.parseInt(tokens[2]);
-
-				fecha = new Fecha(dia, mes, anio);
-
-				// validación básica
-				if (fecha.getDia() != dia || fecha.getMes() != mes) {
-					throw new NumberFormatException();
-				}
-
-				valida = true;
-			} catch (NumberFormatException e) {
-				System.out.println("Fecha no válida");
-			}
-		} while (!valida);
-
-		return fecha;
-	}*/
 
 	public int nClienteMovil() {
 
@@ -254,19 +226,32 @@ public class Empresa implements Cloneable {
 
 	}
 
-	public int factura() {
+	public float factura() {
 
-		int factura = 0;
-		
-		for(int i = 0; i < nClientes; i++) {
+		float factura = 0;
+
+		for (int i = 0; i < nClientes; i++) {
 			
+			factura += clientes[i].factura();
 		}
 
 		return factura;
 	}
 
+	/**
+	 * El método descuento(int dto)que permita reducir el precio por minuto 
+	 * a los clientes de tarifa Movil de la Empresa aplicando al precio original 
+	 * que tenían el descuento indicado por parámetro
+	 * @param desc
+	 */
 	public void descuento(int desc) {
 
+		for(int i = 0; i < nClientes; i++) {
+			
+			if(clientes[i] instanceof ClienteMovil) {
+
+			}
+		}
 	}
 
 	@Override

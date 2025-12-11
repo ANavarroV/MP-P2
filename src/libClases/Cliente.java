@@ -1,6 +1,6 @@
 package libClases;
 
-public class Cliente implements Cloneable{
+public class Cliente implements Cloneable, Proceso{
 
 	private final String nif; //dni del cliente (letra incluida) (NO puede cambiar)
 	private final int codCliente; //codigo único (y fijo) generado por la aplicación
@@ -72,6 +72,10 @@ public class Cliente implements Cloneable{
 	public int hashCode() {
 		
 		return nif.hashCode();
+	}
+	
+	public float factura() {
+		return 0.0f;
 	}
 	
 	public String getNif(){

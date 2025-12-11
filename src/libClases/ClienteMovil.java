@@ -1,6 +1,6 @@
 package libClases;
 
-public class ClienteMovil extends Cliente{
+public class ClienteMovil extends Cliente implements Cloneable, Proceso{
 	
 	private Fecha fechaPermanencia;
 	private float minHablados;
@@ -41,6 +41,10 @@ public class ClienteMovil extends Cliente{
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
 		return super.equals(obj);
+	}
+	
+	public float factura() {
+		return precioMin * minHablados;
 	}
 	
 	public Fecha getFPermanencia() {

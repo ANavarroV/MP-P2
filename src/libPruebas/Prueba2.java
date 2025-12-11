@@ -35,14 +35,16 @@ public class Prueba2 {
 		g.alta(cm2);
 		System.out.println("#####\nClientes del grupo g:");
 		System.out.println(g + "Factura: " + g.factura() + "\n---\n");
-		/*gcopia = (Empresa) g.clone();
+		
+		gcopia = (Empresa) g.clone();
 		gcopia.baja("805W");
 		gcopia.baja("106T");
 		gcopia.alta(ct[3]); // el 106T no existe
 		g.baja("953H"); // elimina el cliente con 953H
 		gcopia.descuento(50);
 		System.out.println("Grupo g:\n" + g + "\nGrupo gcopia:\n" + gcopia + "\n");
-		System.out.println("g tiene " + g.getN() + " clientes y gcopia " + gcopia.getN());*/
+		System.out.println("g tiene " + g.getN() + " clientes y gcopia " + gcopia.getN());
+		
 		System.out.print("g tiene " + g.nClienteMovil() + " clientes de Tarifa Movil ");
 		System.out.println("y " + (g.getN() - g.nClienteMovil()) + " de Tarifa Plana");
 	}
