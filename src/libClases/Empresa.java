@@ -16,18 +16,57 @@ public class Empresa implements Cloneable {
 	public Empresa(Empresa e) {
 
 		nClientes = e.nClientes;
-		clientes = new Cliente[this.nClientes];
+		clientes = new Cliente[nClientes];
 
-		for (int i = 0; i < this.nClientes; i++) {
+		for (int i = 0; i < nClientes; i++) {
 			clientes[i] = (Cliente) e.clientes[i].clone();
 		}
 	}
 
 	@Override
-	public Empresa clone() {
+	public Object clone() {
 		
 		return new Empresa(this);
 	}
+	
+	 @Override
+    public boolean equals(Object obj) {
+        if (this == obj)return true;
+        
+        if (obj == null) return false;
+        
+        if (getClass() != obj.getClass()) return false;
+       
+        return equals((Empresa)obj);
+    }
+	 
+	 public boolean equals(Empresa otra){
+	        
+        if (this.nClientes != otra.nClientes) return false;
+        
+        boolean comprobacion[] = new boolean[otra.nClientes];
+        
+        for(Cliente c1 : this.clientes){
+            
+            boolean encontrado = false;
+            
+            if(c1 == null) return false;
+            
+            for(int j = 0; j < otra.nClientes; j++){
+                if(!comprobacion[j] && c1.equals(otra.clientes[j])){
+                    comprobacion[j] = true;
+                    encontrado = true;
+                    break;
+                }
+            }
+            
+            if(!encontrado) return false;
+        
+        }
+        
+        return true;
+    }
+    
 
 	private int buscaDNI(String dni) {
 
@@ -108,38 +147,33 @@ public class Empresa implements Cloneable {
 
 			switch (opc) {
 
-			case 1: {
-
-				System.out.print("Precio por minuto: ");
-				float precioMin = sc.nextFloat();
-				System.out.println("Fecha fin permanencia: ");
-				Fecha finPermanencia = Fecha.pedirFecha();
-
-				ClienteMovil cM = new ClienteMovil(nDNI, nNombre, nFN, nFA, finPermanencia, nMinutos, precioMin);
-
-				if (nClientes == clientes.length) {
-					ampliarCapacidad();
+				case 1: {
+	
+					System.out.print("Precio por minuto: ");
+					float precioMin = sc.nextFloat();
+					System.out.println("Fecha fin permanencia: ");
+					Fecha finPermanencia = Fecha.pedirFecha();
+	
+					ClienteMovil cM = new ClienteMovil(nDNI, nNombre, nFN, nFA, finPermanencia, nMinutos, precioMin);
+	
+					alta(cM);
+	
+					break;
 				}
-
-				clientes[nClientes++] = cM;
-
-				break;
-			}
-
-			case 2: {
-
-				String nacionalidad = sc.nextLine();
-
-				ClienteTarifaPlana cTP = new ClienteTarifaPlana(nDNI, nNombre, nFN, nFA, nMinutos, nacionalidad);
-
-				if (nClientes == clientes.length) {
-					ampliarCapacidad();
+	
+				case 2: {
+					
+					sc.nextLine();
+					
+					System.out.println("Nacionalidad: ");
+					String nacionalidad = sc.nextLine();
+	
+					ClienteTarifaPlana cTP = new ClienteTarifaPlana(nDNI, nNombre, nFN, nFA, nMinutos, nacionalidad);
+	
+					alta(cTP);
+	
+					break;
 				}
-
-				clientes[nClientes++] = cTP;
-
-				break;
-			}
 			}
 
 		} else {
@@ -187,16 +221,12 @@ public class Empresa implements Cloneable {
 				String opc = sc.nextLine();
 
 				if (opc.equals("s")) {
-
-					Cliente eliminado = clientes[pos];
-					clientes[pos] = clientes[nClientes - 1];
-					clientes[nClientes - 1] = null;
-					nClientes--;
-
-					System.out.println(
-							"El cliente " + eliminado.getNombre() + " con nif " + bajaNIF + " ha sido eliminado");
-					ok = true;
-
+				    Cliente eliminado = clientes[pos];
+				    baja(bajaNIF); // usa la baja ordenada
+				    System.out.println("El cliente " + eliminado.getNombre() + " con nif " + bajaNIF + " ha sido eliminado");
+				    
+				    ok = true;
+				    
 				} else if (opc.equals("n")) {
 					System.out.println("El cliente con nif " + bajaNIF + " no se elimina");
 
@@ -215,14 +245,16 @@ public class Empresa implements Cloneable {
 	public void baja(String nif) {
 
 		int pos = buscaDNI(nif);
-
-		if (pos != -1) {
-
-			clientes[pos] = clientes[nClientes - 1];
-			clientes[nClientes - 1] = null;
-			nClientes--;
-
-		}
+		
+	    if (pos != -1) {
+	    	
+	        for (int i = pos; i < nClientes - 1; i++) {
+	            clientes[i] = clientes[i + 1];
+	        }
+	        
+	        clientes[nClientes - 1] = null;
+	        nClientes--;
+	    }
 
 	}
 
@@ -244,15 +276,19 @@ public class Empresa implements Cloneable {
 	 * que tenían el descuento indicado por parámetro
 	 * @param desc
 	 */
-	public void descuento(int desc) {
-
-		for(int i = 0; i < nClientes; i++) {
-			
-			if(clientes[i] instanceof ClienteMovil) {
-
-			}
-		}
-	}
+    public void descuento(int dto){
+        float descuento = (float) ((100.0-dto)/100.0);
+        
+        for(int i = 0; i < nClientes; i++){
+        	
+            if(clientes[i] instanceof ClienteMovil){
+                
+                ClienteMovil c = (ClienteMovil) clientes[i];
+                float precio = c.precioMin()*descuento;
+                c.setPreciomin(precio);
+            }
+        }
+    }
 
 	@Override
 	public String toString() {
@@ -260,7 +296,7 @@ public class Empresa implements Cloneable {
 		String s = "";
 
 		for (int i = 0; i < nClientes; i++) {
-			s += clientes[i].toString() + "\n";
+			s += clientes[i] + "\n";
 		}
 
 		return s;

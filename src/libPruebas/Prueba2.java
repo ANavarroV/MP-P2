@@ -6,6 +6,7 @@ public class Prueba2 {
 	public static void main(String[] args) {
 		Fecha f1 = new Fecha(29, 2, 2001), f2 = new Fecha(f1), f3 = new Fecha(29, 2, 2004);
 		Fecha fnac1 = new Fecha(7, 3, 1980), fnac2 = new Fecha(27, 06, 1995);
+		Fecha fnacPepe = new Fecha(2, 2, 1972), fnacPepe1 = new Fecha(1, 1, 2001), fnacPepe2 = new Fecha(1, 1, 2010);
 		System.out.println("Fechas:" + f1 + ", " + f2 + ", " + f3);
 		ClienteTarifaPlana[] ct = new ClienteTarifaPlana[4];
 		ClienteMovil cm1 = new ClienteMovil("547B", "Luis Perez", fnac2, 50.50f, 0.03f);
@@ -24,8 +25,10 @@ public class Prueba2 {
 		g.alta(cm2);
 		g.alta(ct[1]);
 		g.alta(cm3);
-		g.alta();
-		g.alta(); // añade un ClienteMovil 100Z Pepe Luis, 2/2/1972 1/1/2001,
+		ClienteMovil pepeLuis = new ClienteMovil("100Z", "Pepe Luis", fnacPepe, fnacPepe1, fnacPepe2, 40.30f, 0.04f);
+		g.alta(pepeLuis);
+		ClienteMovil error = new ClienteMovil("106T", "Pepe Luis", fnacPepe, fnacPepe1, fnacPepe2, 40.30f, 0.04f);
+		g.alta(error); // añade un ClienteMovil 100Z Pepe Luis, 2/2/1972 1/1/2001,
 		//40.30, 0.04 1/1/2010 y otro con nif 106T
 		g.alta(ct[1]); // no lo debe de añadir ya que existe
 		System.out.println("Grupo g:\n" + g);
@@ -36,7 +39,11 @@ public class Prueba2 {
 		System.out.println("#####\nClientes del grupo g:");
 		System.out.println(g + "Factura: " + g.factura() + "\n---\n");
 		
+		System.out.println("contador antes de clonar = " + Cliente.debugContador());
+
 		gcopia = (Empresa) g.clone();
+		
+		System.out.println("contador antes de clonar = " + Cliente.debugContador());
 		gcopia.baja("805W");
 		gcopia.baja("106T");
 		gcopia.alta(ct[3]); // el 106T no existe

@@ -11,6 +11,8 @@ public class Cliente implements Cloneable, Proceso{
 	private static int contador = 1;
 	private static Fecha fechaPorDefecto = new Fecha(01, 01, 2018);
 	
+	public static int debugContador() { return contador; }
+
 	
 	public Cliente (String NIF, String nom, Fecha fNac, Fecha fAlta) {
 		
@@ -34,12 +36,12 @@ public class Cliente implements Cloneable, Proceso{
 	
 	public Cliente(Cliente c) {
 		
-		this.nombre = c.nombre;
-		this.nif = c.nif;
-		this.fechaAlta = new Fecha(c.fechaAlta);
-		this.fechaNac = new Fecha(c.fechaNac);
+		nombre = c.nombre;
+		nif = c.nif;
+		fechaAlta = new Fecha(c.fechaAlta);
+		fechaNac = new Fecha(c.fechaNac);
 		
-		this.codCliente = contador++;
+		codCliente = contador++;
 	}
 	
 	/**
